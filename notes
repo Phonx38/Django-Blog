@@ -1,0 +1,26 @@
+python manage.py startproject proj name
+
+python manage.py startapp app name
+
+python manage.py runserver
+
+// make changes to database even after creation of db avoids uncessary sql code
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py create superuser
+
+python manage.py sqlmigrate appname intail file no
+
+python manage.py shell
+    from app.models import  xyz
+    User.objects.all()
+    User.objects.first()
+    User.objects.filter(username='asdasda').first()
+    user = User.objects.filter(username='asdasda').first()
+
+    user.post_set
+    user.post_set.create(user)
+
