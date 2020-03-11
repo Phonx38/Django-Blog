@@ -21,3 +21,21 @@ class Profile(models.Model):
     #         output_size = (300,300)
     #         img.thumbnail(output_size)
     #         img.save(self.image.path)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        img = Image.open(self.image)
+        if img.height > 300 or img.width > 300:
+            from django.core.files.base import ContentFile
+            from io import BytesIO
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            thumb_io = BytesIO()
+            img.save(thumb_io, img.format)
+            file_name = self.image.name
+            self.image.save(
+                       file_name,
+                        ContentFile(
+                                    thumb_io.getvalue()),
+                        save=False)
+            super().save(*args, **kwargs)
