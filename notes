@@ -2,6 +2,8 @@ python manage.py startproject proj name
 
 python manage.py startapp app name
 
+register app in settings.py and models in admin.py
+
 python manage.py runserver
 
 // make changes to database even after creation of db avoids uncessary sql code
